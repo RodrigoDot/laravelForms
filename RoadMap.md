@@ -18,13 +18,6 @@ Add a call to load the Schema ``use Illuminate\Support\Facades\Schema;``
 Now inside the boot function add ``Schema::defaultStringLength(191);``
 That's it, try to migrate your tables again
 
-#### Autocomplete Helper to laravel
-
-If you wanna, you can use a lib to helpe you autocompleting, to check supportation go to (Barryvdh)[https://github.com/barryvdh/laravel-ide-helper]
-Run ``composer require barryvdh/laravel-ide-helper`` and do the changes that you need looking at the documentation
-
-
-
 
 
 
