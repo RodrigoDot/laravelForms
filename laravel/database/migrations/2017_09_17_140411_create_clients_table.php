@@ -15,6 +15,16 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('document')->unique();
+            $table->string('email')->unique();
+            $table->string('phone');
+            $table->boolean('defaulting');
+            $table->date('data_nascimento')->nullable();
+            $table->char('sexo')->nullable();
+            $table->enum('civil_state', array_keys(\App\Client::CIVIL_STATE))->nullable();
+            $table->string('disabled')->nullable();
+            $table->string('fantasy_name')->nullable();
             $table->timestamps();
         });
     }
