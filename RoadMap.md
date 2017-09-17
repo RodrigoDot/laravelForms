@@ -24,7 +24,15 @@
 - This command will generate automagically your model, controller and migration file
 - To know how to work with these files go to [Laravel](https://laravel.com/docs/5.5)
 
+## Creatng seeds
 
+- To work using seeds we have to make a interface to fill the data, in laravel we use the FACTORIES
+- Run ``php artsan make:factory SEEDNAMEFactory``
+- Run ``php artsan make:seed SEEDNAMESeeder``
+- Inside ``laravel/database`` there is a directory named as ``factories`` and another one named as ``seeds``
+- The factories go to ``factories`` and so on
+- To know more about go to [Laravel](https://laravel.com/docs/5.5)
+- To fill the data, the Laravel uses a plugin name ``Faker`` by default, to know about go to [Faker](https://github.com/fzaninotto/Faker)
 
 
 
