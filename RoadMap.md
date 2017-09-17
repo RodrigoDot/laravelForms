@@ -10,3 +10,4 @@
 ## Creating the Laravel squeleton
 
 Run ``composer create-project --prefer-dist laravel/laravel PROJECTNAME``
+d
