@@ -22,7 +22,7 @@
 
 - Run ``php artisan make:model MODELNAME -m -c``
 - This command will generate automagically your model, controller and migration file
-- To know how to work with these files go to (Laravel)[https://laravel.com/docs/5.5]
+- To know how to work with these files go to [Laravel](https://laravel.com/docs/5.5)
 
 
 
