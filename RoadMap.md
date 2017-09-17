@@ -7,7 +7,7 @@
 - Tokenizer PHP Extension
 - XML PHP Extension
 
-## Creating the Laravel squeleton
+## Starting the project
 
 Run ``composer create-project --prefer-dist laravel/laravel PROJECTNAME``
-d
+Go to ``laravel/.env`` and change the settings to your database configuration
