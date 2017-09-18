@@ -3,27 +3,31 @@
 use Faker\Generator as Faker;
 
 $factory->define(\App\Client::class, function (Faker $faker) {
+      return [
+        'name' => $faker->name,
+        'email' => $faker->safeEmail,
+        'phone' => $faker->phoneNumber,
+        'defaulting' => rand(0,1)
+      ];
+  });
 
-  $denied = array("-", " ", "+", ".", "(", ")", "x");
-  $document = str_replace($denied, "", $faker->phoneNumber);
+$factory->state(\App\Client::class, 'pessoa_fisica', function(Faker $faker) {
+    $denied = array("-", " ", "+", ".", "(", ")", "x");
+    $cpf = str_replace($denied, "", $faker->phoneNumber);
+      return [
+        'document' => $cpf,
+        'born' => $faker->date(),
+        'genre' => rand(1, 2) == 1 ? 'm' : 'f',
+        'civil_state' => rand(1, 3),
+        'disabled' => $faker->word
+      ];
+  });
 
-    return [
-      'name' => $faker->name,
-      'document' => $document,
-      'email' => $faker->safeEmail,
-      'phone' => $faker->phoneNumber,
-      'defaulting' => rand(0,1)
-    ];
-
-});
- /*
-
-
- 'data_nascimento' => ->nullable(),
- 'sexo' => rand('f', 'm')->nullable(),
- 'civil_state' => numberBetween($min = 1, $max = 3) ,
- 'disabled' => str_random(20)->nullable(),
- 'fantasy_name' => $faker->name->nullable(),
-
-
- */
+$factory->state(\App\Client::class, 'pessoa_juridica', function(Faker $faker) {
+    $denied = array("-", " ", "+", ".", "(", ")", "x");
+    $cnpj = str_replace($denied, "", $faker->phoneNumber) . '/0001';
+      return [
+        'document' => $cnpj,
+        'fantasy_name' => $faker->company
+      ];
+  });
