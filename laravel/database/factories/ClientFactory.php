@@ -1,16 +1,13 @@
 <?php
 
-require_once __DIR__ . '/documento.php';
+use Faker\Generator as Faker;
 
-$factory->define(\App\Client::class, function (Faker\Generator $faker) {
-
-  $cpfs = cpfs();
-  $cnpj = cnpjs();
+$factory->define(\App\Client::class, function (Faker $faker) {
 
     return [
       'name' => $faker->name,
-      'document' => $cpfs[array_rand($cpfs,1)],
-      'email' => $faker->unique()->safeEmail,
+      'document' => $faker->phoneNumber,   
+      'email' => $faker->safeEmail,
       'phone' => $faker->phoneNumber,
       'defaulting' => rand(0,1)
     ];
