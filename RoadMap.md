@@ -93,6 +93,28 @@ factory(\App\Client::class, 20)->states('pessoa_fisica')->create();
 - It will run the piece of code that have the general attributes and the piece that contains the attributes of the ``pessoa_fisica`` state 20 times as passed as a parameter, in the state declaretion we passed the name of our choosen state and at the end the method ``create()``
 - To run it ``php artisan db:seed``
 
+## Singletons
+
+- Singletons are declared instances of some class that you define as a static instance, what does it means?
+- It menas that this declared instance will be the same since the first second that your application is loaded until the moment that you kill this instance or finish your application.
+- A good example of a singleton is when you want to change the language of the FAKER
+
+## How to change FAKER language
+
+- Go to ``laravel/.env`` and add the following code ate the end of the file
+``FAKER_LANGUAGE=pt_BR``
+- Now go to ``laravel/app/AppServiceProvider.php`` and add the following code inside the register function:
+```php
+if($this->app->environment() !== 'production') {
+  $this->app->singleton(\Faker\Generator::class, function() {
+    return \Faker\Factory::create(env('FAKER_LANGUAGE'));
+  });
+}
+```
+
+- This code will make FAKER as a singleton and defines it with the configuration that we have done inside the ``.env`` file.
+- Now every time that we call a FAKER instance this one will be the same ever and will always have our personalized settings.
+
 
 
 
