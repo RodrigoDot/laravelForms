@@ -34,6 +34,65 @@
 - To know more about go to [Laravel DOC](https://laravel.com/docs/5.5)
 - To fill the data, the Laravel uses a plugin name ``Faker`` by default, to know about go to [Faker](https://github.com/fzaninotto/Faker)
 
+## Using the factories states
+
+- Using the factories states we can reuse some code,
+
+```php
+$factory->define(\App\Client::class, function (Faker $faker) {
+      return [
+        'name' => $faker->name,
+        'email' => $faker->safeEmail
+      ];
+  });
+
+$factory->state(\App\Client::class, 'pessoa_fisica', function(Faker $faker) {
+    $denied = array("-", " ", "+", ".", "(", ")", "x");
+    $cpf = str_replace($denied, "", $faker->phoneNumber);
+      return [
+        'document' => $cpf,
+        'born' => $faker->date()
+      ];
+  });
+
+$factory->state(\App\Client::class, 'pessoa_juridica', function(Faker $faker) {
+    $denied = array("-", " ", "+", ".", "(", ")", "x");
+    $cnpj = str_replace($denied, "", $faker->phoneNumber) . '/0001';
+      return [
+        'document' => $cnpj,
+        'fantasy_name' => $faker->company
+      ];
+  });
+```
+
+- The code above have three different pieces,
+- The first contains the general attributes of ``Clients`` model, in this piece we used the ``DEFINE`` method to declare that this code should be load every time that this class is loaded
+- The second contains the individuals attributes that only the ``pessoa_fisica`` has as a sub-group of ``Clients``, here we used the ``states`` method to declare that this piece of code only should be load when the ``factory state`` is equals to ``pessoa_fisica``.
+- The third is the same as the second.
+
+## Running TableSeeders
+
+- To run ours factories files we must run first ours seeds files and then populate the database, we need to tell to the Laravel how to do it
+- Go to ``laravel/database/seeds/DatabaseSeeder.php``, there you will find something like this:
+```php
+//$this->call(UsersTableSeeder::class);
+```
+
+- This file is the dafult TableSeeder, a file that runs the seeds, through this one you can tell to Laravel to run yours won tableseeders files
+- We have already learned how to make tableseeders before
+- So inside the code you saw above, put the lines exactly the same as the example, changhing only the name of your tableseeder file
+
+## Calling factories states
+
+- After created yours factories and tableseeders, to choose wich state should be loaded by the DatabaseSeeder follow this:
+- Imagine that you have a factory file just like the example in **Using the factories states**, so to call them put the code below inside the method ``RUN`` of your model tableseeder file.
+```php
+factory(\App\Client::class, 20)->states('pessoa_fisica')->create();
+```
+
+- It will run the piece of code that have the general attributes and the piece that contains the attributes of the ``pessoa_fisica`` state 20 times as passed as a parameter, in the state declaretion we passed the name of our choosen state and at the end the method ``create()``
+- To run it ``php artisan db:seed``
+
 
 
 
