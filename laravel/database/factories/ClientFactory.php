@@ -4,9 +4,12 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Client::class, function (Faker $faker) {
 
+  $denied = array("-", " ", "+", ".", "(", ")", "x");
+  $document = str_replace($denied, "", $faker->phoneNumber);
+
     return [
       'name' => $faker->name,
-      'document' => $faker->phoneNumber,   
+      'document' => $document,
       'email' => $faker->safeEmail,
       'phone' => $faker->phoneNumber,
       'defaulting' => rand(0,1)
