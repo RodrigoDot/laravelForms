@@ -115,7 +115,25 @@ if($this->app->environment() !== 'production') {
 - This code will make FAKER as a singleton and defines it with the configuration that we have done inside the ``.env`` file.
 - Now every time that we call a FAKER instance this one will be the same ever and will always have our personalized settings.
 
+## Using **@Yield** to build a layout
 
+- To use the Yield feature to build a layout, we need to have a view file named as ``layout`` we can only import ``@yeilds`` inside view files named as ``layout``
+1. ``@Extends``, To use ``@yield`` first you have to define inside some view file that you will extend this file to some layout view file:
+```php
+@extends('pathToYourLayoutFile')
+```
+2. ``@Section``, after declare where it will be placed, we must define the content that will be extended to the layout file view. It must be named as 'content'
+```php
+@section('content')
+your code goes here
+@endsection('content')
+```
+3. ``@Yeild``, finally the ``@yield``, it defines the place where the ``@section('content')`` will be placed inside your layout. It must be named as 'content' too
+```php
+@yield('content')
+```   
+
+- Doing this, all code between the ``@section`` will be replace your ``@yeild``
 
 
 
