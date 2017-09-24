@@ -11,4 +11,17 @@ class Client extends Model
       2 => 'Married',
       3 => 'Separated'
     ];
+
+    protected $fillable = [
+        'name',
+        'document',
+        'email',
+        'phone',
+        'defaulting',
+        'born',
+        'genre',
+        'civil_state',
+        'disabled',
+        'fantasy_name'
+    ];
 }

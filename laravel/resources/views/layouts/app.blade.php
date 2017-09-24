@@ -12,13 +12,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/0b45c1657d.css" />
+
 </head>
 <body>
     <div id="app">
+      <header>
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -29,7 +31,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                      <i class="fa fa-home"></i>
+                      {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
@@ -43,8 +46,18 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li>
+                              <a href="{{ route('login') }}">
+                                <i class="fa fa-sign-in"></i>
+                              Login
+                              </a>
+                            </li>
+                            <li>
+                              <a href="{{ route('register') }}">
+                                <i class="fa fa-user-plus"></i>
+                              Register
+                              </a>
+                            </li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -70,8 +83,13 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+      </header>
+        <main class="container">
+          <div class="container-fluid">
+            <h2>@yield('icon')<small> @yield('description')</small></h2>
+            @yield('content')
+          </div>
+        </main>
     </div>
 
     <!-- Scripts -->
