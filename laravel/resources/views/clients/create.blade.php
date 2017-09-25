@@ -11,29 +11,29 @@
 @section('content')
 
 <!-- form.form^(label.label-control^input.form-control)*10 -->
-{!!csrf_field()!!}
-<form action="{{route('clients.store')}}" method="POST" class="form">
+<form action="{{route('clients.store')}}" method="POST">
+  {!!csrf_field()!!}
 
   <input type="text" class="hidden">
 
   <div class="form-group">
     <label for="name" class="label-control">Name</label>
-    <input id="name" name="name" type="text" class="form-control" autofocus>
+    <input id="name" name="name" type="text" class="form-control" autofocus required>
   </div>
 
   <div class="form-group">
     <label for="document" class="label-control">Document</label>
-    <input id="document" name="document" type="text" class="form-control">
+    <input id="document" name="document" type="text" class="form-control" required>
   </div>
 
   <div class="form-group">
     <label for="email" class="label-control">Email</label>
-    <input id="email" name="email" type="email" class="form-control">
+    <input id="email" name="email" type="email" class="form-control" required>
   </div>
 
   <div class="form-group">
     <label for="phone" class="label-control">Phone</label>
-    <input id="phone" name="phone" type="text" class="form-control">
+    <input id="phone" name="phone" type="text" class="form-control" required>
   </div>
 
   <div class="form-group">
@@ -60,9 +60,9 @@
   <div class="form-group">
     <label for="civil-state" class="label-control">Civil State</label>
     <select id="civil-state" name="civil-state" class="form-control">
-      <option value="1">Single</option>
-      <option value="2">Married</option>
-      <option value="3">Separated</option>
+      @foreach(\App\Client::CIVIL_STATES as $key => $value)
+      <option value="{{$key}}">{{$value}}</option>
+      @endforeach
     </select>
   </div>
 
@@ -79,7 +79,7 @@
   <div class="form-group">
     <label for="defaulting">Defaulting</label>
     <div class="checkbox">
-      <label><input id="defaulting" name="defaulting" type="checkbox"></label>
+      <label><input id="defaulting" name="defaulting" type="checkbox" default="false"></label>
     </div>
   </div>
 

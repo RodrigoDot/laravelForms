@@ -19,10 +19,10 @@ class CreateClientsTable extends Migration
             $table->string('document')->unique();
             $table->string('email')->unique();
             $table->string('phone');
-            $table->boolean('defaulting');
+            $table->boolean('defaulting')->default(0);
             $table->date('born')->nullable();
             $table->char('genre')->nullable();
-            $table->enum('civil_state', array_keys(\App\Client::CIVIL_STATE))->nullable();
+            $table->enum('civil_state', array_keys(\App\Client::CIVIL_STATES))->nullable();
             $table->string('disabled')->nullable();
             $table->string('fantasy_name')->nullable();
             $table->timestamps();

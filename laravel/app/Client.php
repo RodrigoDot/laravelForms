@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    const CIVIL_STATE = [
+    const CIVIL_STATES = [
       1 => 'Single',
       2 => 'Married',
       3 => 'Separated'

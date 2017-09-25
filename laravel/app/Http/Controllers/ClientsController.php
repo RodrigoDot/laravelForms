@@ -35,6 +35,7 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
+      //$client = new Client();
       $client = $request->all();
       \App\Client::create($client);
       return response()->redirectToRoute('clients.index');
